@@ -1,0 +1,20 @@
+import unittest
+from unittest.mock import patch
+from LogIn import LogIn  # Assuming LogIn.py contains the LogIn class
+
+class TestLogIn(unittest.TestCase):
+    @patch('builtins.input', side_effect=['test@mail.com', '1234', 'tic_tac_toe'])
+    def test_log_in_valid(self, mock_input):
+        login_instance = LogIn()
+       
+        login_instance.log_in()
+       
+
+    @patch('builtins.input', return_value='tic_tac_toe')
+    def test_get_game_choice(self, mock_input):
+        login_instance = LogIn()
+        game_choice = login_instance.get_game_choice()
+        self.assertEqual(game_choice, 'tic_tac_toe')
+
+if __name__ == '__main__':
+    unittest.main()
